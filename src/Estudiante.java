@@ -1,9 +1,13 @@
+import java.util.ArrayList;
+
 public class Estudiante extends Persona {
     
     private String matricula;
     private int edad;
     private String carrera;
     private String fechaInscripcion;
+    private ArrayList<Materia> materias;
+    private ArrayList<Double> calificaciones;
 
     public Estudiante (String nombre, String apellido, String matricula, int edad, String carrera, String fechaInscripcion){
         super(nombre, apellido);
@@ -12,6 +16,11 @@ public class Estudiante extends Persona {
         this.edad = edad;
         this.carrera = carrera;
         this.fechaInscripcion = fechaInscripcion;
+
+
+        materias = new ArrayList<>();
+        calificaciones = new ArrayList<>();
+
     }
 
     public String getMatricula(){
@@ -30,6 +39,37 @@ public class Estudiante extends Persona {
         return fechaInscripcion;
     }
 
+
+    public ArrayList<Materia> getMaterias(){
+        return materias;
+    }
+
+    public ArrayList<Double> getCalificaciones(){
+        return calificaciones;
+    }
+
+    public void asignarMateria(Materia materia){
+        materias.add(materia);
+    }
+
+    public void registrarCalificacion(double calificacion){
+
+        calificaciones.add(calificacion);
+    }
+
+    public double calcularPromedio(){
+        if(calificaciones.isEmpty()){
+            return 0;
+        }
+
+        double suma = 0;
+
+        for(double nota : calificaciones){
+            suma += nota;
+        }
+
+        return suma/ calificaciones.size();
+    }
     @Override
     public void mostrarInfo(){
         
